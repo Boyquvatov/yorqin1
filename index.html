@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <title>Random Array</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <label for="N">N:</label>
+                <input type="text" id="N" name="N">
+                <label for="M">M:</label>
+                <input type="text" id="M" name="M">
+                <button onclick="fillArray()" class="btn btn-success">Fill Array</button>
+                <br><br>
+            </div>
+            <div class="card-footer">
+                <table id="arrayTable" class="table table-bordered">
+                </table>
+                <br>
+                <div id="divisibleBy5"></div>
+                <div id="divisibleBy3"></div>
+                </div>
+            </div>
+        </div>
+    <script>
+        function fillArray() {
+            const N = parseInt(document.getElementById("N").value);
+            const M = parseInt(document.getElementById("M").value);
+            const table = document.getElementById("arrayTable");
+            let divisibleBy5Count = 0;
+            let divisibleBy3Count = 0;
+
+            
+            table.innerHTML = "";
+
+            
+            for (let i = 0; i < N; i++) {
+                const row = table.insertRow();
+                for (let j = 0; j < M; j++) {
+                    const cell = row.insertCell();
+                    const randomNum = Math.floor(Math.random() * (151 - 50)) + 50;
+                    cell.textContent = randomNum;
+                    if (randomNum % 5 === 0) {
+                        divisibleBy5Count++;
+                    }
+                    if (randomNum % 3 === 0) {
+                        divisibleBy3Count++;
+                    }
+                }
+            }
+
+            
+            document.getElementById("divisibleBy5").textContent = "Number of elements divisible by 5: " + divisibleBy5Count;
+            document.getElementById("divisibleBy3").textContent = "Number of elements divisible by 3: " + divisibleBy3Count;
+        }
+    </script>
+</body>
+</html>
